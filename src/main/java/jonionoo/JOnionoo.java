@@ -6,7 +6,6 @@ import objects.Relay;
 import parser.IParser;
 import parser.OnionooParser;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class Jonionoo. Main instance of the program.
  * 
@@ -21,7 +20,7 @@ public class JOnionoo {
 	private String server;
 
 	/**
-	 * Instantiates a new atlas.
+	 * Instantiates a new JOnionoo.
 	 *
 	 * @param server
 	 *            the server
