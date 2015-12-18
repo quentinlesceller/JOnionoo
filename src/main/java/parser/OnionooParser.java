@@ -19,12 +19,11 @@ import objects.Relay;
 
 /**
  * The OnionooParser.
+ * 
  * @author quentin
  */
 
 public class OnionooParser implements IParser {
-
-	
 
 	/**
 	 * Instantiates a new onionoo parser.
@@ -45,10 +44,15 @@ public class OnionooParser implements IParser {
 		JSONObject json;
 		try {
 			json = readJsonFromUrl(server.concat("details?search=".concat(query)));
-			JSONArray jsonRelays = json.getJSONArray("relays");
-			for (int i = 0; i < jsonRelays.length(); i++) {
-				JSONObject jsonRelay = (JSONObject) jsonRelays.get(i);
-				relays.add(relayBuilder(jsonRelay));
+
+			if (isPresent(json, "relays")) {
+				JSONArray jsonRelays = json.getJSONArray("relays");
+				for (int i = 0; i < jsonRelays.length(); i++) {
+					JSONObject jsonRelay = (JSONObject) jsonRelays.get(i);
+					relays.add(relayBuilder(jsonRelay));
+				}
+			} else {
+				relays.add(nullRelayBuilder());
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -57,6 +61,52 @@ public class OnionooParser implements IParser {
 		}
 
 		return relays;
+	}
+
+	/**
+	 * Build a null relay.
+	 *
+	 * @return the relay
+	 */
+	private Relay nullRelayBuilder() {
+		Relay relay = new Relay();
+
+		relay.setAdvertisedBandwidth(null);
+		relay.setAllegedFamily(null);
+		relay.setASName(null);
+		relay.setASNumber(null);
+		relay.setBandwidthBurst(null);
+		relay.setBandwidthRate(null);
+		relay.setCityName(null);
+		relay.setConsensusWeight(null);
+		relay.setConsensusWeightFraction(null);
+		relay.setContact(null);
+		relay.setCountryCode(null);
+		relay.setCountryName(null);
+		relay.setDirAddress(null);
+		relay.setExitPolicy(null);
+		relay.setExitPolicySummary(null);
+		relay.setExitPolicyV6Summary(null);
+		relay.setFamily(null);
+		relay.setFirstSeen(null);
+		relay.setFlags(null);
+		relay.setHostName(null);
+		relay.setLastChangedAddressOrPort(null);
+		relay.setLastRestarted(null);
+		relay.setLastSeen(null);
+		relay.setLatitude(null);
+		relay.setLongitude(null);
+		relay.setMeasured(null);
+		relay.setMiddleProbability(null);
+		relay.setNickname(null);
+		relay.setObservedBandwidth(null);
+		relay.setOrAddresses(null);
+		relay.setPlatform(null);
+		relay.setRecommendedVersion(null);
+		relay.setRegionName(null);
+		relay.setRunning(null);
+
+		return relay;
 	}
 
 	/**
@@ -161,7 +211,7 @@ public class OnionooParser implements IParser {
 
 			relay.setFamily(effectiveFamily);
 		} else {
-			relay.setExitPolicy(null);
+			relay.setEffectiveFamily(null);
 		}
 
 		if (isPresent(jsonRelay, "exit_policy")) {
@@ -388,7 +438,7 @@ public class OnionooParser implements IParser {
 	 * @return true, if is present
 	 */
 	private boolean isPresent(JSONObject object, String key) {
-		
+
 		return !(object.isNull(key));
 
 	}
