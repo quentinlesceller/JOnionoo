@@ -11,7 +11,7 @@ Jonionoo is a simple Java API for Onionoo server.
 Download the latest version and type the following line in the Jonionoo folder.
 
 ```bash
-$ git clone https://github.com/libgit2/libgit2
+$ git clone https://github.com/quentinlesceller/JOnionoo
 $ mvn clean compile assembly:single
 ```
 
