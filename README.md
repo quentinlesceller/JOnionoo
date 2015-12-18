@@ -1,6 +1,6 @@
 # JOnionoo
 
-Jonionoo is Java API for Onionoo server.
+Jonionoo is a simple Java API for Onionoo server.
 
 ## Features
 
