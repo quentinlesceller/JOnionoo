@@ -77,7 +77,7 @@ public class OnionooParser implements IParser {
 
 		if (isPresent(jsonRelay, "alleged_family")) {
 			ArrayList<String> allegedFamily = new ArrayList<String>();
-			JSONArray jsonAllegedFamily = jsonRelay.getJSONArray("family");
+			JSONArray jsonAllegedFamily = jsonRelay.getJSONArray("alleged_family");
 			for (int i = 0; i < jsonAllegedFamily.length(); i++) {
 				allegedFamily.add(jsonAllegedFamily.getString(i));
 			}
