@@ -236,7 +236,7 @@ public class OnionooParser implements IParser {
 		} else {
 			relay.setExitProbability(null);
 		}
-
+System.out.println(jsonRelay.toString());
 		if (isPresent(jsonRelay, "family")) {
 			ArrayList<String> family = new ArrayList<String>();
 			JSONArray jsonFamily = jsonRelay.getJSONArray("family");
@@ -389,7 +389,8 @@ public class OnionooParser implements IParser {
 	 * @return true, if is present
 	 */
 	private boolean isPresent(JSONObject object, String key) {
-		return object.toString().contains(key);
+		
+		return !(object.isNull(key));
 
 	}
 
