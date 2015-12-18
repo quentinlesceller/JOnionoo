@@ -236,7 +236,6 @@ public class OnionooParser implements IParser {
 		} else {
 			relay.setExitProbability(null);
 		}
-System.out.println(jsonRelay.toString());
 		if (isPresent(jsonRelay, "family")) {
 			ArrayList<String> family = new ArrayList<String>();
 			JSONArray jsonFamily = jsonRelay.getJSONArray("family");
